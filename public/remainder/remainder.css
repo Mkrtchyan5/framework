@@ -1,0 +1,41 @@
+body {
+    background-color: grey;
+}
+
+.main_remainder .container {
+    margin: 50px auto;
+    background-color: #a4c639;
+    opacity: 0.8;
+    width: 50%;
+}
+
+.head {
+    margin: 10px auto;
+    width: 50%;
+}
+
+.head .title {
+    text-align: center;
+    font-size: 21px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.desc_body {
+    margin: 15px auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+}
+
+.desc_body .desc {
+    width: 80%;
+    padding-left: 13px;
+    line-height: 29px;
+    color: white;
+    border: 1px solid white;
+    border-radius: 17px;
+    margin-bottom: 12px;
+    margin-top: 12px;
+}
