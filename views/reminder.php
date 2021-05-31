@@ -36,7 +36,6 @@ use engine\Application;
         </div>
     </nav>
     <hr>
-    <br><br>
     <div class="callback-form">
         <div class="container">
             <div class="row">
