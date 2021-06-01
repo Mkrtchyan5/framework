@@ -37,11 +37,15 @@
         <tr>
             <th>Title</th>
             <th>Subject</th>
+            <th></th>
+            <th></th>
         </tr>
         <?php foreach ($articles as $article): ?>
             <tr>
                 <td><a href="article?id=<?=$article['id']?>"><?= $article['title'] ?></a></td>
                 <td><?= $article['subject'] ?></td>
+                <td style="background-color: red"><a href="" style="color: white">Edit</a></td>
+                <td style="background-color: red"><a href="article/delete?id=<?=$article['id']?>" style="color: white">Delete</a></td>
             </tr>
         <?php endforeach; ?>
     </table>

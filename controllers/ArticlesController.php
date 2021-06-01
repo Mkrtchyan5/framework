@@ -42,6 +42,12 @@ class ArticlesController
     }
 
 
+    public function edit()
+    {
+
+    }
+
+
     public function view()
     {
         $session = Application::$session;
@@ -70,6 +76,21 @@ class ArticlesController
             $session->set('error', 'Your Data Is Empty');
             return Application::$response->redirect('/add-reminder');
         }
+    }
+
+    public function delete()
+    {
+        $session = Application::$session;
+        if ($session->get('user')) {
+            $id = Application::$request->get('id');
+            $model = new Article();
+            $article = $model->getArticleById($id);
+            if ($article){
+                $model->delete($id);
+                return Application::$response->redirect('/articles');
+            }
+        }
+        return Application::$response->redirect('/login');
     }
 
 }

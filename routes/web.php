@@ -16,4 +16,5 @@ return [
     '/add-reminder' => [ArticlesController::class, 'reminder',],
     '/create' => [ArticlesController::class, 'create',],
     '/article' => [ArticlesController::class, 'view',],
+    '/article/delete' => [ArticlesController::class, 'delete',],
 ];

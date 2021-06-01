@@ -33,6 +33,15 @@ class Article extends Database
         return $articles;
     }
 
+
+    public function getTotalRecords()
+    {
+        $db = Pdo::getInstance();
+        $user_id = $_SESSION['user'][0]['id'];
+        $stmt = $db->query("SELECT COUNT(id) as count FROM articles WHERE user_id = $user_id ", true);
+        return $stmt[0]['count'];
+    }
+
     public function getArticleById($id)
     {
         $db = Pdo::getInstance();
@@ -41,13 +50,9 @@ class Article extends Database
         return $reminders;
     }
 
-    public function getTotalRecords()
+    public function delete($id)
     {
         $db = Pdo::getInstance();
-        $user_id = $_SESSION['user'][0]['id'];
-        $stmt = $db->query("SELECT COUNT(id) as count FROM articles WHERE user_id = $user_id ", true);
-        return $stmt[0]['count'];
-
+        $db->query("DELETE FROM articles WHERE id = $id");
     }
-
 }
