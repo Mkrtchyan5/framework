@@ -40,7 +40,7 @@
         </tr>
         <?php foreach ($articles as $article): ?>
             <tr>
-                <td><?= $article['title'] ?></td>
+                <td><a href="article?id=<?=$article['id']?>"><?= $article['title'] ?></a></td>
                 <td><?= $article['subject'] ?></td>
             </tr>
         <?php endforeach; ?>

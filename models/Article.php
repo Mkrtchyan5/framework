@@ -33,6 +33,14 @@ class Article extends Database
         return $articles;
     }
 
+    public function getArticleById($id)
+    {
+        $db = Pdo::getInstance();
+        $user_id = $_SESSION['user'][0]['id'];
+        $reminders = $db->query("SELECT * FROM articles WHERE id = $id AND user_id = $user_id", true);
+        return $reminders;
+    }
+
     public function getTotalRecords()
     {
         $db = Pdo::getInstance();

@@ -15,4 +15,5 @@ return [
     '/logout' => [LoginController::class, 'logout',],
     '/add-reminder' => [ArticlesController::class, 'reminder',],
     '/create' => [ArticlesController::class, 'create',],
+    '/article' => [ArticlesController::class, 'view',],
 ];

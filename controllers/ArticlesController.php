@@ -5,6 +5,7 @@ namespace controllers;
 
 
 use engine\Application;
+use engine\components\Router;
 use engine\components\View;
 use engine\components\Pagination;
 use models\Article;
@@ -23,11 +24,11 @@ class ArticlesController
             $page = new Pagination();
             $limit = 5;
             $articles = $article->getArticles($limit);
-            $pages = $page->getPaginationNumbers($limit,$article);
+            $pages = $page->getPaginationNumbers($limit, $article);
             return (new View('article.php', ['articles' => $articles, 'pages' => $pages]));
-        } else {
-            return Application::$response->redirect('/login');
         }
+        return Application::$response->redirect('/login');
+
     }
 
 
@@ -36,9 +37,24 @@ class ArticlesController
         $session = Application::$session;
         if ($session->get('user')) {
             return (new View('reminder.php'));
-        } else {
-            return Application::$response->redirect('/login');
         }
+        return Application::$response->redirect('/login');
+    }
+
+
+    public function view()
+    {
+        $session = Application::$session;
+        if ($session->get('user')) {
+            $id = Application::$request->get('id');
+            $article = (new Article())->getArticleById($id);
+            if (!$id || !$article) {
+                http_response_code(404);
+                die();
+            }
+            return (new View('reminders.php', ['article' => $article[0]]));
+        }
+        return Application::$response->redirect('/login');
     }
 
     public function create()
