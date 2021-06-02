@@ -17,4 +17,6 @@ return [
     '/create' => [ArticlesController::class, 'create',],
     '/article' => [ArticlesController::class, 'view',],
     '/article/delete' => [ArticlesController::class, 'delete',],
+    '/article/edit' => [ArticlesController::class, 'edit',],
+    '/article/update' => [ArticlesController::class, 'update',],
 ];

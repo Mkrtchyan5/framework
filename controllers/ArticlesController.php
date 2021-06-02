@@ -44,7 +44,35 @@ class ArticlesController
 
     public function edit()
     {
+        $session = Application::$session;
+        if ($session->get('user')) {
+            $id = Application::$request->get('id');
+            $article = (new Article())->getArticleById($id);
+            if (!$id || !$article) {
+                http_response_code(404);
+                die();
+            }
+            return (new View('editReminders.php', ['article' => $article[0]]));
+        }
+        return Application::$response->redirect('/login');
+    }
 
+    public function update()
+    {
+        $session = Application::$session;
+        if ($session->get('user')) {
+            $id = Application::$request->post('id');
+            $data = Application::$request->only(['title', 'description', 'subject', 'full_text']);
+            $article = new Article($data);
+            if (Application::$request->post('title') != "" && Application::$request->post('description') != ""
+                && Application::$request->post('subject') != "" && Application::$request->post('full_text') != "") {
+                $article->update($article->title, $article->description, $article->subject, $article->full_text, $id);
+            } else {
+                $session->set('error', 'Your Data Is Empty');
+                return Application::$response->redirect("/article/edit?id=$id");
+            }
+        }
+        return Application::$response->redirect('/login');
     }
 
 
@@ -85,7 +113,7 @@ class ArticlesController
             $id = Application::$request->get('id');
             $model = new Article();
             $article = $model->getArticleById($id);
-            if ($article){
+            if ($article) {
                 $model->delete($id);
                 return Application::$response->redirect('/articles');
             }

@@ -55,4 +55,11 @@ class Article extends Database
         $db = Pdo::getInstance();
         $db->query("DELETE FROM articles WHERE id = $id");
     }
+
+    public function update($title, $description, $subject, $full_text,$id)
+    {
+        $db = Pdo::getInstance();
+        $db->query("UPDATE  articles SET title = '$title', description ='$description' 
+                                    , subject='$subject' , full_text = '$full_text' WHERE id=$id");
+    }
 }
